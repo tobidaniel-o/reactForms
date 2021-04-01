@@ -6,6 +6,7 @@ class App extends Component {
     this.state = {
       firstName: "",
       lastName: "",
+      isFriendly: true
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -35,6 +36,17 @@ class App extends Component {
           placeholder="Last Name"
           onChange={this.handleChange}
         />
+        <br/>
+        {/**
+         * Other useful form elements:
+         *
+         *  <textarea /> element
+         *  <input type="checkbox" />
+         *  <input type="radio" />
+         *  <select> and <option> elements
+         */}
+         <textarea name="" id="" cols="30" rows="10" value={"Some default value"}/>
+         <input type="checkbox" checked={this.state.isFriendly }/>
         <h1>
           {this.state.firstName} {this.state.lastName}
         </h1>

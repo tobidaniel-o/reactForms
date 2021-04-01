@@ -11,8 +11,9 @@ class App extends Component {
   }
 
   handleChange(event) {
+    const {name, value} = event.target
     this.setState({
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
   }
 
@@ -21,6 +22,7 @@ class App extends Component {
       <form>
         <input
           type="text"
+          value={this.state.firstName}
           name="firstName"
           placeholder="First Name"
           onChange={this.handleChange}
@@ -28,7 +30,8 @@ class App extends Component {
         <br />
         <input
           type="text"
-           name="firstName"
+          value={this.state.lastName}
+          name="lastName"
           placeholder="Last Name"
           onChange={this.handleChange}
         />

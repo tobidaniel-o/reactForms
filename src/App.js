@@ -6,16 +6,17 @@ class App extends Component {
     this.state = {
       firstName: "",
       lastName: "",
-      isFriendly: true
+      isFriendly: true,
+      gender: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    const {name, value} = event.target
-    this.setState({
-      [name]: value,
-    });
+    const { name, value, type, checked } = event.target;
+    type === "checkbox"
+      ? this.setState({ [name]: checked })
+      : this.setState({ [name]: value });
   }
 
   render() {
@@ -36,7 +37,7 @@ class App extends Component {
           placeholder="Last Name"
           onChange={this.handleChange}
         />
-        <br/>
+        <br />
         {/**
          * Other useful form elements:
          *
@@ -45,8 +46,39 @@ class App extends Component {
          *  <input type="radio" />
          *  <select> and <option> elements
          */}
-         <textarea name="" id="" cols="30" rows="10" value={"Some default value"}/>
-         <input type="checkbox" checked={this.state.isFriendly }/>
+        <textarea value={"Some default value"} onChange={this.handleChange} />
+        <br />
+        <label htmlFor="">
+          <input
+            name="isFriendly"
+            type="checkbox"
+            checked={this.state.isFriendly}
+            onChange={this.handleChange}
+          />
+          Is Friendly
+        </label>{" "}
+        <br />
+        <label htmlFor="">
+          <input
+            name="gender"
+            type="radio"
+            checked={this.state.gender === "male"}
+            onChange={this.handleChange}
+            value="male"
+          />
+          Male
+        </label>{" "}
+        <br />
+        <label htmlFor="">
+          <input
+            name="gender"
+            type="radio"
+            checked={this.state.gender === "female"}
+            onChange={this.handleChange}
+            value="female"
+          />
+          Female
+        </label>
         <h1>
           {this.state.firstName} {this.state.lastName}
         </h1>

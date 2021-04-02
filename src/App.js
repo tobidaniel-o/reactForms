@@ -135,11 +135,9 @@ class App extends Component {
       age: "",
       gender: "",
       destination: "",
-      dietRestrictions: {
-        isVegan: false,
-        isKosher: false,
-        isLactoseFree: false,
-      },
+      isVegan: false,
+      isKosher: false,
+      isLactoseFree: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -152,10 +150,14 @@ class App extends Component {
   // }
 
   handleChange(event) {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
+    const { name, value, type, checked } = event.target;
+    type === "checkbox"
+      ? this.setState({
+          [name]: checked,
+        })
+      : this.setState({
+          [name]: value,
+        });
   }
 
   render() {
@@ -234,7 +236,7 @@ class App extends Component {
           <input
             type="checkbox"
             name="isVegan"
-            checked={this.state.dietRestrictions.isVegan}
+            checked={this.state.isVegan}
             onChange={this.handleChange}
           />
 
@@ -242,7 +244,7 @@ class App extends Component {
             <input
               type="checkbox"
               name="isKosher"
-              checked={this.state.dietRestrictions.isKosher}
+              checked={this.state.isKosher}
               onChange={this.handleChange}
             />
             Kosher
@@ -252,7 +254,7 @@ class App extends Component {
             <input
               type="checkbox"
               name="isLactoseFree"
-              checked={this.state.dietRestrictions.isLactoseFree}
+              checked={this.state.isLactoseFree}
               onChange={this.handleChange}
             />
             Lactose Free
@@ -270,10 +272,10 @@ class App extends Component {
         <p>Your age: {this.state.age}</p>
         <p>Your gender: {this.state.gender}</p>
         <p>Your destination: {this.state.destination}</p>
-        <p>
-          Your dietary restrictions:
-          { }
-        </p>
+        <p>Your dietary restrictions:</p>
+        <p> Vegan:{this.state.isVegan ? "Yes" : "No"}</p>
+        <p> Vegan:{this.state.isKosher ? "Yes" : "No"}</p>
+        <p> Vegan:{this.state.isLactoseFree ? "Yes" : "No"}</p>
       </main>
     );
   }

@@ -8,6 +8,7 @@ class App extends Component {
       lastName: "",
       isFriendly: true,
       gender: "",
+      favColor: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -21,7 +22,7 @@ class App extends Component {
 
   render() {
     return (
-      <form>
+      <form className="wrapper" onSubmit={this.handleSubmit}>
         <input
           type="text"
           value={this.state.firstName}
@@ -56,7 +57,7 @@ class App extends Component {
             onChange={this.handleChange}
           />
           Is Friendly
-        </label>{" "}
+        </label>
         <br />
         <label htmlFor="">
           <input
@@ -67,7 +68,7 @@ class App extends Component {
             value="male"
           />
           Male
-        </label>{" "}
+        </label>
         <br />
         <label htmlFor="">
           <input
@@ -79,9 +80,29 @@ class App extends Component {
           />
           Female
         </label>
+        {/* Formik: this is an API that helps to deal with forms much easier*/}
+        <br/>
+        <label htmlFor="">Favorite Color:</label>
+        <select
+          name=""
+          id=""
+          value={this.state.favColor}
+          onChange={this.handleChange}
+          name="favColor"
+        >
+          <option value="" disabled>Choose one</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+          <option value="red">Red</option>
+          <option value="orange">Orange</option>
+          <option value="yellow">Yellow</option>
+        </select>
         <h1>
           {this.state.firstName} {this.state.lastName}
         </h1>
+        <h2>You are a {this.state.gender}</h2>
+        <h2>Your favorite color is {this.state.favColor}</h2>
+        <button>Submit</button>
       </form>
     );
   }
